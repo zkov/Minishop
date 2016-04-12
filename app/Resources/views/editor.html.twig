@@ -1,0 +1,26 @@
+{# app/Resources/views/articleedit.html.twig #}
+{% extends 'articleedit.html.twig' %}
+
+{% block body %}
+{% block editor %}
+    <h1>Artikel hinzufügen</h1>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}
+<p/>
+<a href="{{ url('list_page') }}"><label type="button" >Liste Seite</label></a>
+<p/>
+<fieldset>
+<legend>Artikel Liste</legend>
+{% block artclelist %}
+    {% for item in list %}
+    <p id = "p{{item.id}}">
+   Name: {{ item.name }} Preis: {{ item.price }} Quantität: {{item.quantity}}<button class="delete" id ="{{item.id}}" type="button">löschen</button>
+    </p>
+    {% else %}
+    <h2>Keine artikel !</h2>
+    {% endfor %}
+{% endblock %}
+</fieldset>
+{% endblock %}

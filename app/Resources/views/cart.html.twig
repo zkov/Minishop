@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="ISO/IEC 8859-15" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block body %}
+        <fieldset>
+        <legend>Warenkorb</legend>
+        {% for item in list %}
+                {% block list %}
+                <div>
+                <p>
+                Name: <label id="name">{{ item.name }}</label> Preis: <label id="price">{{ item.price }}</label> Bestelt: <label id="ordered">{{item.ordered}}</label>
+                </p>      
+               
+                </div>
+                {% endblock %}
+                {% else %}
+                <h2>Keine Artikel !</h2>
+                {% endfor %}
+        <a href="{{ url('clear_cart') }}"><label type="button" >Löschen</label></a>
+        <a href="{{ url('order_cart') }}"><label type="button" >Bestellen</label></a>
+        {% block message %}{% endblock %}
+        </fieldset>
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

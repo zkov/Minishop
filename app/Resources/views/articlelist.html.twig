@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="ISO/IEC 8859-15" />
+        <title>{% block title %}Article list{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+       
+    </head>
+    <body>
+        {% block body %}
+        <h1>Artikel Liste</h1>
+                {% for item in list %}
+                {% if item.quantity >= 1 %}
+                {% block list %}
+                <div id="div{{item.id}}">
+                <p>
+                Name: <label id="name{{item.id}}">{{ item.name }}</label> Preis: <label id="price{{item.id}}">{{ item.price }}</label> Quantität: <label id="quantity{{item.id}}">{{item.quantity}}</label>
+                </p>      
+                <button class="listbutton" id ="{{item.id}}" type="button">In den Warenkorb</button>
+                </div>
+                {% endblock %}
+                {% endif %}
+                {% else %}
+                <h2>Keine Artikel !</h2>
+                {% endfor %}
+                <a href="{{ url('cart_page') }}"><label type="button" >Warenkorb</label></a>
+                <a href="{{ url('article_editor') }}"><label type="button" >Atikel hinzufugen</label></a>
+        {% endblock %}
+        {% block javascripts %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+            <script type="text/javascript" src="{{ asset('js/sendarticle.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>
