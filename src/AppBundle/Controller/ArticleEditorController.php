@@ -37,6 +37,9 @@ class ArticleEditorController extends Controller
         ));
     }
     
+    /**
+     * @param Article $article 
+     */
     public function buildEditorForm($article)
     {
         $form = $this->createFormBuilder($article)
